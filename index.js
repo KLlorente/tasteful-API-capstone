@@ -1,6 +1,6 @@
 const RECIPE_SEARCH_URL = 'https://api.edamam.com/search'; 
 
-function getDataFromApi(searchTerm, callback) {
+function getDataFromFoodApi(searchTerm, callback) {
   const query = {
     q: `${searchTerm}`,
     app_id: '51a032a8',
@@ -11,7 +11,7 @@ function getDataFromApi(searchTerm, callback) {
   $.getJSON(RECIPE_SEARCH_URL, query, callback); 
 }
 
-function renderResult(result) {
+function renderWrittenResult(result) {
   return `
   <div>
     <h2> 
@@ -23,8 +23,38 @@ function renderResult(result) {
 }
 
 function displayRecipeData(data) {
-  const results = data.hits.map((item,index) => renderResult(item)); 
-  $('.js-search-results').html(results); 
+  const results = data.hits.map((item,index) => renderWrittenResult(item)); 
+  $('.js-search-results-written').html(results); 
+}
+
+//JQUERY FOR VIDEO RECIPES
+const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+const API_KEY = "AIzaSyC9TravZTqMYX7RCCeotUOKvVYR3-oJ4Sg";
+
+function getDataFromVideoApi(searchTerm, callback) {
+  const query= {
+    part: 'snippet', 
+    key: API_KEY, 
+    q: `${searchTerm} recipe`,
+    maxResults: 5
+  }; 
+  $.getJSON(YOUTUBE_SEARCH_URL, query, callback); 
+}
+
+function renderVideoResult(result) {
+  return `
+  <div>
+    <h2>
+    <a class = 'js-result-name-video" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
+    </h2>
+    <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}"></a>
+  </div>
+  `; 
+}
+
+function displayVideoData(data) {
+  const results = data.items.map((item,index) =>renderVideoResult(item)); 
+  $('.js-search-results-video').html(results); 
 }
 
 function watchSubmit() {
@@ -33,7 +63,8 @@ function watchSubmit() {
     const queryTarget = $(event.currentTarget).find('.js-query'); 
     const query = queryTarget.val(); 
     queryTarget.val(""); 
-    getDataFromApi(query, displayRecipeData); 
+    getDataFromFoodApi(query, displayRecipeData);
+    getDataFromVideoApi(query, displayVideoData); 
   }); 
 }
 

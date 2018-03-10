@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box; 
+}
+.result-area {
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+/* Clearfix */
+.result-area::before,
+.result-area::after {
+  display: table;
+  content: '';
+}
+
+.result-area::after {
+  clear: both;
+}
+
+.js-search-results-written, .js-search-results-video {
+  float: left;
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+  width: 50%;
+}
+

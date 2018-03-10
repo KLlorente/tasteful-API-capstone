@@ -45,7 +45,7 @@ function renderVideoResult(result) {
   return `
   <div>
     <h2>
-    <a class = 'js-result-name-video" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
+    <a class ="js-result-name-video" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
     </h2>
     <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}"></a>
   </div>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Tasteful Recipe Finder</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -16,17 +17,26 @@
       <h1>Welcome to Tasteful</h1>
       
       <form action = "#" class="js-search-form">
-        <label for="query">Enter in a Cuisine, Ingredient, or Dish Name</label>
-        <input type="text" class = "js-query">
+        <input type="text" placeholder="Cuisine, Ingredient, or Dish Name" class = "js-query" required>
         <button type="submit">Search</button>
       </form>
       
       <div class="result-area">
-      <h2>Written Recipes</h2>
-        <div class="js-search-results-written">
+        <div class="search-results">
+          <div>
+            <h2 class="recipe-heading">Written Recipes</h2>
+          </div>
+          <div class= 'js-search-results-written'>
+            
+          </div>
         </div>
-      <h2>Video Recipes</h2>
-        <div class ="js-search-results-video">
+        <div class ="search-results">
+          <div>
+            <h2 class= "recipe-heading">Video Recipes</h2>
+          </div>
+          <div class='js-search-results-video'>
+            
+          </div>
         </div>
       </div>
       

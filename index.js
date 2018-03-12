@@ -17,7 +17,7 @@ function renderWrittenResult(result) {
     <h2> 
       <a class="js-result-name" href="${result.recipe.url}" target = "_blank">${result.recipe.label}</a>   
     </h2>
-    <a href="${result.recipe.url}" target="_blank"><img src="${result.recipe.image}"></a>
+    <a href="${result.recipe.url}" target="_blank"><img src="${result.recipe.image}" class="thumbnail"></a>
   </div>
   `; 
 }
@@ -45,9 +45,9 @@ function renderVideoResult(result) {
   return `
   <div>
     <h2>
-    <a class ="js-result-name-video" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
+    <a class ="js-result-name" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
     </h2>
-    <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}"></a>
+    <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank" ><img src="${result.snippet.thumbnails.medium.url}" class="thumbnail"></a>
   </div>
   `; 
 }
@@ -57,6 +57,8 @@ function displayVideoData(data) {
   $('.js-search-results-video').html(results); 
 }
 
+
+
 function watchSubmit() {
   $('.js-search-form').submit(event => {
     event.preventDefault(); 
@@ -64,8 +66,10 @@ function watchSubmit() {
     const query = queryTarget.val(); 
     queryTarget.val(""); 
     getDataFromFoodApi(query, displayRecipeData);
-    getDataFromVideoApi(query, displayVideoData); 
+    getDataFromVideoApi(query, displayVideoData);
+    $('.result-area').show(); 
   }); 
 }
 
 $(watchSubmit); 
+

@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+  background: url('http://2.bp.blogspot.com/-6I6wlk20YJg/TxxzW4KcjjI/AAAAAAAAAL8/JYs-nsbn2QI/s1600/recipe-cards-pile-med.jpg') no-repeat center center fixed;
+  background-size: cover; 
+}
+.result-area {
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+}
+
+/* Clearfix */
+.result-area::before,
+.result-area::after {
+  display: table;
+  content: '';
+}
+
+.result-area::after {
+  clear: both;
+}
+
+.js-search-results-written {
+  border: 2px red solid;
+}
+
+.js-search-results-video {
+  border: 2px blue solid; 
+}
+
+.search-results {
+  float: left;
+  padding-left: 1.04166666%;
+  padding-right: 1.04166666%;
+  width: 50%;
+  margin: auto; 
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 70px;
+}
+
+.js-search-form label,
+.js-search-form input,
+.js-search-form button {
+  display: block;
+  padding: .2em .5em;
+  margin: auto;
+  width: 50%;
+  font-size: 50px;
+}
+
+.result-area {
+  display: none;
+}
+
+.thumbnail {
+  height: 200px;
+  width: 200px; 
+}
+
+.recipe-heading {
+  font-size: 50px; 
+}
+
+.js-search-results-written, .js-search-results-video {
+  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255,0.75);
+}
+
+
+
+
+
+

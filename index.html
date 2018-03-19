@@ -14,31 +14,29 @@
   </head>
   <body>
     <main>
-      <h1>Welcome to Tasteful</h1>
       
-      <form action = "#" class="js-search-form">
-        <input type="text" placeholder="Cuisine, Ingredient, or Dish Name" class = "js-query" required>
-        <button type="submit">Search</button>
-      </form>
+      <div class = "search-field hidden">
+        <h1>Welcome to Tasteful</h1>
+
+        <form action = '#' class = 'js-search-form'>
+          <input type='text' placeholder="Cuisine, Ingredient, or Dish Name" class="js-query" required>
+          <button type="submit">Search</button>
+        </form>
+      </div>
       
       <div class="result-area">
-        <div class="search-results">
-          <div>
-            <h2 class="recipe-heading">Written Recipes</h2>
-          </div>
-          <div class= 'js-search-results-written'>
-            
-          </div>
+        <div id='vidResult'>
+          <span id="closeButton">X</span>
         </div>
-        <div class ="search-results">
-          <div>
-            <h2 class= "recipe-heading">Video Recipes</h2>
-          </div>
-          <div class='js-search-results-video'>
-            
-          </div>
+        
+        <h2>Recipe Results</h2>
+        
+        <div class= "search-results-written">
+          
         </div>
       </div>
+      
+      
       
     </main>
     <script src="index.js"></script>

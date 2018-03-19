@@ -1,51 +1,16 @@
 * {
   box-sizing: border-box;
-
 }
 
 body {
   font-family: 'Roboto Slab', serif;
-  background: url('http://2.bp.blogspot.com/-6I6wlk20YJg/TxxzW4KcjjI/AAAAAAAAAL8/JYs-nsbn2QI/s1600/recipe-cards-pile-med.jpg') no-repeat center center fixed;
-  background-size: cover; 
-}
-.result-area {
-  max-width: 1000px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 auto;
-}
-
-/* Clearfix */
-.result-area::before,
-.result-area::after {
-  display: table;
-  content: '';
-}
-
-.result-area::after {
-  clear: both;
-}
-
-.js-search-results-written {
-  border: 2px red solid;
-}
-
-.js-search-results-video {
-  border: 2px blue solid; 
-}
-
-.search-results {
-  float: left;
-  padding-left: 1.04166666%;
-  padding-right: 1.04166666%;
-  width: 50%;
-  margin: auto; 
-  text-align: center;
+/*  background: url('http://2.bp.blogspot.com/-6I6wlk20YJg/TxxzW4KcjjI/AAAAAAAAAL8/JYs-nsbn2QI/s1600/recipe-cards-pile-med.jpg') no-repeat center center fixed;
+  background-size: cover; */
 }
 
 h1 {
   text-align: center;
-  font-size: 70px;
+  font-size: 8vh;
 }
 
 .js-search-form label,
@@ -54,30 +19,87 @@ h1 {
   display: block;
   padding: .2em .5em;
   margin: auto;
-  width: 50%;
-  font-size: 50px;
+  width: 75%;
+  font-size: 4vh;
 }
 
 .result-area {
-  display: none;
-}
-
-.thumbnail {
-  height: 200px;
-  width: 200px; 
-}
-
-.recipe-heading {
-  font-size: 50px; 
-}
-
-.js-search-results-written, .js-search-results-video {
-  background-color: rgb(255,255,255);
-  background-color: rgba(255,255,255,0.75);
+  max-width: 1000px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  border: 2px yellow solid;
 }
 
 
+.videoIcon {
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: Red;
+  color: #d9d9d9; 
+  border-radius: 5px;
+}
+#vidResult {
+ display: none;
+    outline: 5px solid red;
+    background-color: rgb(10,10,10); 
+    background-color: rgba(10,10,10,0.9);
+    z-index: 10;
+    width: 75vw;
+    height: 70vh;
+    position: fixed;
+    margin:auto;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: scroll; 
+}
 
+#closeButton {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+    background:#ccc;
+    cursor: pointer; 
+}
 
+.result-area {
+  display: none; 
+}
 
+.hidden {
+  display: none; 
+}
 
+h2 {
+  text-align: center; 
+}
+
+.ingredient-ul {
+  border: 2px red solid;
+}
+
+.ingredientItems {
+  border: 2px blue solid;
+  width: 50%;
+  float: left; 
+  max-height: 200px;
+  overflow: scroll; 
+}
+
+.thumbnail{
+  width: 50%;
+  float: left; 
+}
+
+.search-results-written {
+  border: 2px green solid; 
+}    
+
+.single-result {
+  border: 2px grey dotted;
+  text-align: left;
+  float: left; 
+  width: 33.3333%;
+}
+    

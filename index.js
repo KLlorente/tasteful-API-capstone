@@ -6,25 +6,47 @@ function getDataFromFoodApi(searchTerm, callback) {
     app_id: '51a032a8',
     app_key: 'd85f821aa086125ecc5ac0981a57b35b',
     from: 0, 
-    to: 5
+    to: 6
   };
   $.getJSON(RECIPE_SEARCH_URL, query, callback); 
 }
 
 function renderWrittenResult(result) {
   return `
-  <div>
-    <h2> 
-      <a class="js-result-name" href="${result.recipe.url}" target = "_blank">${result.recipe.label}</a>   
+  <div class="single-result">
+    <h2 class ="js-result-name">
+      <a href="${result.recipe.url}" target= "_blank">${result.recipe.label}</a>   
     </h2>
+  
     <a href="${result.recipe.url}" target="_blank"><img src="${result.recipe.image}" class="thumbnail"></a>
+    <div class="ingredientItems">
+    <p class="ingredient-ul">Ingredients for this Recipe:
+      ${makeUL(result.recipe.ingredientLines)}
+      </div
+    </p>
+    
+    <span class='videoIcon' title='Search Similar Video Recipes'> Search Related Video Recipes</span>
   </div>
   `; 
 }
 
 function displayRecipeData(data) {
   const results = data.hits.map((item,index) => renderWrittenResult(item)); 
-  $('.js-search-results-written').html(results); 
+  $('.search-results-written').html(results);
+}
+
+
+
+//Generate List for ingredient bar? 
+function makeUL(array) {
+  const list = document.createElement('ul'); 
+  
+  for(let i=0; i<array.length; i++) {
+    const item = document.createElement('li'); 
+    item.appendChild(document.createTextNode(array[i])); 
+    list.appendChild(item); 
+  }
+  return list.outerHTML; 
 }
 
 //JQUERY FOR VIDEO RECIPES
@@ -41,23 +63,21 @@ function getDataFromVideoApi(searchTerm, callback) {
   $.getJSON(YOUTUBE_SEARCH_URL, query, callback); 
 }
 
-function renderVideoResult(result) {
-  return `
-  <div>
-    <h2>
-    <a class ="js-result-name" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a> 
-    </h2>
-    <a href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank" ><img src="${result.snippet.thumbnails.medium.url}" class="thumbnail"></a>
-  </div>
-  `; 
+function vidResult(data) {
+  let relatedVideos=``;
+  const x = data.items.map((item, i) => {
+    //item.snippet.thumbnails.medium.url;
+    relatedVideos += 
+    `<div class= "videoPopUp">
+      <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target = "_blank">
+      <img src=' ${item.snippet.thumbnails.medium.url} '>
+      </a>
+    </div>`;
+  });
+  $('#vidResult .videoPopUp').remove(); 
+  $('#vidResult').append(relatedVideos);
+  $('#vidResult').fadeIn(300);
 }
-
-function displayVideoData(data) {
-  const results = data.items.map((item,index) =>renderVideoResult(item)); 
-  $('.js-search-results-video').html(results); 
-}
-
-
 
 function watchSubmit() {
   $('.js-search-form').submit(event => {
@@ -66,10 +86,34 @@ function watchSubmit() {
     const query = queryTarget.val(); 
     queryTarget.val(""); 
     getDataFromFoodApi(query, displayRecipeData);
-    getDataFromVideoApi(query, displayVideoData);
     $('.result-area').show(); 
   }); 
 }
 
+document.getElementById('closeButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    this.parentNode.style.display = 'none';
+}, false); 
+
+
+//jQuery Events
+//document.ready(() => 
+$('.search-results-written').on('click', '.videoIcon', function() {
+    let vidSearch = $('.js-result-name a', event.target.parentElement).text();
+    getDataFromVideoApi(vidSearch, vidResult);
+  });
+  
+$(document).ready(function () {
+    $('div.hidden').fadeIn(1000).removeClass('hidden');
+});
+  
+
+
+
 $(watchSubmit); 
+
+
+
+
+
 

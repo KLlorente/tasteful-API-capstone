@@ -19,13 +19,14 @@ function renderWrittenResult(result) {
     </h2>
   
     <a href="${result.recipe.url}" target="_blank"><img src="${result.recipe.image}" class="thumbnail"></a>
-    <div class="ingredientItems">
+    <div scroll-bar-wrap>
+      <div class="ingredientItems scroll-box">
     <p class="ingredient-ul">Ingredients for this Recipe:
-      ${makeUL(result.recipe.ingredientLines)}
-      </div
-    </p>
-    
-    <span class='videoIcon' title='Search Similar Video Recipes'> Search Related Video Recipes</span>
+      ${makeUL(result.recipe.ingredientLines)} </p>
+      </div>
+      <div class="cover-bar"></div>
+    </div>
+    <img src = "https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/you_Tube-512.png" class="videoIcon">
   </div>
   `; 
 }
@@ -33,6 +34,10 @@ function renderWrittenResult(result) {
 function displayRecipeData(data) {
   const results = data.hits.map((item,index) => renderWrittenResult(item)); 
   $('.search-results-written').html(results);
+  
+    $('.search-results-written')
+    .prop('hidden', false)
+    .html(results);
 }
 
 
@@ -68,10 +73,18 @@ function vidResult(data) {
   const x = data.items.map((item, i) => {
     //item.snippet.thumbnails.medium.url;
     relatedVideos += 
-    `<div class= "videoPopUp">
+    `<div class= "videoPopUp scroll-bar-wrap">
+       <h2>   
+        <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank">${item.snippet.title}</a> 
+        </h2>
       <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target = "_blank">
-      <img src=' ${item.snippet.thumbnails.medium.url} '>
+      <img src=' ${item.snippet.thumbnails.medium.url} ' class=vidThumbnail>
       </a>
+        <p>More From: 
+        <a href="https://www.youtube.com/channel/${item.snippet.channelId}" target="_blank">${item.snippet.channelTitle}
+        </a></p>
+      </div>
+      
     </div>`;
   });
   $('#vidResult .videoPopUp').remove(); 

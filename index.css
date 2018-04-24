@@ -3,14 +3,20 @@
 }
 
 body {
-font-family: 'Roboto Slab', serif;
- background: url('http://2.bp.blogspot.com/-6I6wlk20YJg/TxxzW4KcjjI/AAAAAAAAAL8/JYs-nsbn2QI/s1600/recipe-cards-pile-med.jpg') no-repeat center center fixed;
-  background-size: cover; 
+ font-family: 'Roboto Slab', serif;
+ background: url('https://images.freeimages.com/images/large-previews/6e5/spices-1327344.jpg') no-repeat center center fixed;
+  background-size: cover;
+  text-shadow:0 0 1px transparent;
 }
 
 h1 {
   text-align: center;
   font-size: 8vh;
+  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 20px; 
+  max-width: 480px;
+  margin: 4vh auto;
 }
 
 .js-search-form label,
@@ -30,14 +36,19 @@ h1 {
   margin: 0 auto;
   /*border: 2px yellow solid;*/
   display: none; 
+  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 20px; 
 }
 
 
 .videoIcon {
-  width: 50%;
+  width: 25%;
   cursor: pointer;
   color: #d9d9d9; 
   border-radius: 5px;
+  vertical-align: middle;
+  
 }
 #vidResult {
  display: none;
@@ -50,26 +61,40 @@ h1 {
     position: fixed;
     margin:auto;
     top: 50%;
-    transform: translateY(-50%) translateX(30%);
-    overflow: scroll; 
+    transform: translate(-50%,-50%); 
+    overflow: scroll;
+    left: 50%;
+
+
 }
 
 #closeButton {
-    float:right;
-    display:inline-block;
-    padding:2px 5px;
-    background:#ccc;
-    cursor: pointer; 
+    cursor: pointer; color: white; 
+    font-size: 30px;  
+    position: fixed; 
+    right: 15px;
+    padding-bottom: 50px;
 }
 
 .hidden {
   display: none; 
+  height: 80px;
 }
 
 
 h2 {
   text-align: center;
-  font-size: 4vh;
+  font-size: large;
+  min-width: 0;
+  
+}
+
+.vidThumbnail {
+  display: block; 
+  margin: auto;  
+  width: 50%;
+  height: 50%;
+
 }
 
 .ingredient-ul {
@@ -82,37 +107,119 @@ h2 {
   float: left; 
   max-height: 200px;
   padding: 2px;
-  font-size: 3vh; 
+  font-size: .75em; 
 }
 
 .thumbnail{
-  width: 50%;
-  float: left; 
+  width: 100%;
 }
 
-.vidIcon{
-   width: 50%; 
+.search-results-written {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px; 
 }
 
+
+.recipeIcons a {
+  display: inline-block; 
+  width: calc(75% - 5px); 
+  margin-right: 5px; 
+  vertical-align: middle;
+}
 
 .single-result {
   border: 2px grey dotted;
+  border-radius: 20px;
   text-align: left;
   background-color: rgb(255,255,255);
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.95);
+  max-height: 475px;
+  overflow: hidden; 
+  display: grid; 
+  grid-template-rows: 1fr; 
 }
+
 
 .videoPopUp{
   text-align: center; 
   color: white; 
+  padding-top: 15px; 
 }
 
-/*scroll bar css*/
-.scroll-bar-wrap {
-  width: 300px;
+/*Hyperlink Styling */
+.videoPopUp a{
+  text-decoration: none;
+  color: #fff;
+  margin: 0 auto;
   position: relative;
-  margin: 2em auto;
+  display: inline-block;
 }
+
+.videoPopUp > * a:before{
+  
+  position: absolute;
+  margin: 0 auto;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  content: '';
+  opacity: .3;
+  -webkit-transform: scaleX(.9);
+  transition-property: opacity, -webkit-transform;
+  transition-duration: .3s;
+}
+
+.videoPopUp a:hover:before{
+   opacity: 1;
+  -webkit-transform: scaleX(1);
+}
+
+
+.js-result-name a{
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  margin: 0 2px;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  width: 100%; 
+  overflow: hidden; 
+  display: inline-block;
+  
+}
+
+
+
+.js-result-name:before {
+  position: absolute;
+  margin: 0 auto;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  content: '';
+  opacity: .3;
+  -webkit-transform: scaleX(.9);
+  transition-property: opacity, -webkit-transform;
+  transition-duration: .3s;
+}
+
+.js-result-name:hover:before{
+  opacity: 1;
+  -webkit-transform: scaleX(1);
+}
+
+.js-result-name {
+  position: relative;
+}
+
+
+/*scroll bar css*/
+
 .scroll-box {
   width: 100%;
   height: 295px;
@@ -129,6 +236,7 @@ h2 {
 .scroll-box::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,.2); 
 }
+  
 .cover-bar {
   position: absolute;
   background: #fff;;
@@ -139,5 +247,19 @@ h2 {
   -webkit-transition: all .5s;
   opacity: 1;
 }
+
+@media only screen and (max-width: 639px) {
+.search-results-written{
+  grid-template-columns: 1fr 1fr;
+  
+  }
+}
+@media only screen and (max-width: 450px) {
+.search-results-written{
+  grid-template-columns: 1fr; 
+  
+  }
+}
+
 
     

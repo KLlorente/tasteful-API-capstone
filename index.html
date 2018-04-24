@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <title>Tasteful Recipe Finder</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    <link href="floatGrid.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
     <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -14,27 +14,23 @@
   
   </head>
   <body>
-    <main>
-      
-      <div class = "search-field hidden">
-        <h1>Welcome to Tasteful</h1>
-
-        <form action = '#' class = 'js-search-form'>
-          <input type='text' placeholder="Cuisine, Ingredient, or Dish Name" class="js-query" required>
+    
+    <div class = "search-field hidden">
+      <h1>Welcome to Tasteful</h1>
+      <form action = '#' class = 'js-search-form'>
+        <input type='text' placeholder="Cuisine, Ingredient, or Dish Name" class="js-query" required aria-label ="search query">
           <button type="submit">Search</button>
-        </form>
-      </div>
+      </form>
+    </div>
       
+   <main role="main" class="js-output" aria-live="assertive">
       <div class="result-area">
         <div id='vidResult'>
-          <span id="closeButton">X</span>
+          <span id="closeButton" aria-label="close">&times;</span>
         </div>
         
         <h2>Recipe Results</h2>
-        <div class= "wrapper">
         <div class= "search-results-written">
-          
-        </div>
         </div>
       </div>
       
